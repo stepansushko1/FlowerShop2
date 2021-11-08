@@ -2,6 +2,10 @@ import decorators.PaperDecorator;
 import decorators.RibbonDecorator;
 import flowershop.*;
 import order.Order;
+import payment.PayPalPaymentStrategy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -19,8 +23,14 @@ public class Main {
         ((FlowerBucket) bucket).addFlower(flower1);
 
         bucket = new PaperDecorator(bucket);
-        System.out.println(bucket.getPrice());
 
+        FlowerBucket bucket2 = new FlowerBucket();
+
+        bucket2.addFlower(cact);
+
+        List<Item> bucks = new ArrayList<>();
+        bucks.add(bucket);
+        bucks.add(bucket2);
 
     }
 

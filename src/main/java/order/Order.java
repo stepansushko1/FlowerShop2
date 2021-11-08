@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Order {
-    private List<Item> buckets = new ArrayList<>();
+    public List<Item> buckets = new ArrayList<>();
+    public List<User> users = new ArrayList<>();
     private Payment payment;
     private Delivery delivery;
 
@@ -50,7 +51,29 @@ public class Order {
         System.out.println("Total price is: " + price);
         System.out.println("You choose: " + payment.pay(price));
         System.out.println("You choose: " + delivery.delivery(buckets));
-
     }
+
+    public void addUser(User newUser){
+        users.add(newUser);
+    }
+
+    public void removeUser(User delUser){
+        for (int i = 0; i < users.size(); i++){
+            if (Objects.equals(users.get(i), delUser))
+                buckets.remove(i);
+        }
+    }
+
+    public void notifyUsers(){
+        for (int i = 0; i < users.size(); i++){
+            users.get(i).update("Your order is ready!");
+        }
+    }
+
+    public void order(){
+        processOrder();
+        notifyUsers();
+    }
+
 
 }
